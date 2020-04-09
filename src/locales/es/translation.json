@@ -1,0 +1,9 @@
+{
+  "LOGIN_PAGE": {
+    "TITLE": "Iniciar sesión en Pipe",
+    "LOGIN_BUTTON": "Registrarse",
+    "REMEMBER_ME": "Recuérdame en este dispositivo",
+    "FORGET_PASSWORD": "Olvidaste tu contraseña? No hay problema",
+    "RESET_PASSWORD": "Restablecer la contraseña"
+  }
+}

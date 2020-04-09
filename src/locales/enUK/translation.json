@@ -1,0 +1,9 @@
+{
+  "LOGIN_PAGE": {
+    "TITLE": "Sign In to Piper",
+    "LOGIN_BUTTON": "Sign In",
+    "REMEMBER_ME": "Remember me on this device",
+    "FORGET_PASSWORD": "Forget your password? No problem",
+    "RESET_PASSWORD": "Reset password"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "LOGIN_PAGE": {
+    "TITLE": "Melden Sie sich bei Piper an",
+    "LOGIN_BUTTON": "Einloggen",
+    "REMEMBER_ME": "Erinnere dich an mich auf diesem Gerät",
+    "FORGET_PASSWORD": "Passwort vergessen? Kein Problem",
+    "RESET_PASSWORD": "Passwort zurücksetzen"
+  }
+}
