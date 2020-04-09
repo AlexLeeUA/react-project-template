@@ -1,0 +1,20 @@
+{
+  "parser": "babel-eslint",
+  "extends": ["react-app", "prettier", "plugin:prettier/recommended"],
+  "plugins": ["prettier"],
+  "rules": {
+    "no-console": "off",
+    "semi": "error"
+  },
+  "env": {
+    "browser": true,
+    "jest": true
+  },
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 2018,
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  }
+}

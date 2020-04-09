@@ -37,6 +37,26 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
+### `npm run format`
+
+Runs the prettier and formatting the code of _.js and _.jsx files in src folder according to the rules.
+
+## Setup Dev ENV
+
+Install prettier and eslint.
+
+Launch VS Code Quick Open (Ctrl+P), paste the following command, and press enter.
+
+### ext install esbenp.prettier-vscode
+
+### ext install dbaeumer.vscode-eslint
+
+create .env file
+
+touch .env
+
+cp .env.example .env
+
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
