@@ -1,5 +1,21 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Setup Dev ENV
+
+Install prettier and eslint.
+
+Launch VS Code Quick Open (Ctrl+P), paste the following command, and press enter.
+
+### ext install esbenp.prettier-vscode
+
+### ext install dbaeumer.vscode-eslint
+
+create .env file
+
+touch .env
+
+cp .env.example .env
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -40,22 +56,6 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 ### `npm run format`
 
 Runs the prettier and formatting the code of _.js and _.jsx files in src folder according to the rules.
-
-## Setup Dev ENV
-
-Install prettier and eslint.
-
-Launch VS Code Quick Open (Ctrl+P), paste the following command, and press enter.
-
-### ext install esbenp.prettier-vscode
-
-### ext install dbaeumer.vscode-eslint
-
-create .env file
-
-touch .env
-
-cp .env.example .env
 
 ## Learn More
 
