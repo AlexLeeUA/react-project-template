@@ -1,0 +1,30 @@
+@import './shared-variables.scss';
+
+.radio-group {
+  display: flex;
+  flex-direction: row;
+  .btn-container {
+    .btn {
+      width: 138px;
+      border-radius: 0px;
+      &.secondary {
+        border-right: none;
+        font-weight: normal;
+        background-color: $primary-white;
+      }
+    }
+    &:first-child {
+      .btn {
+        border-top-left-radius: $border-radius;
+        border-bottom-left-radius: $border-radius;
+      }
+    }
+    &:last-child {
+      .btn {
+        border-right: 1px solid $tertiary-gray-4;
+        border-top-right-radius: $border-radius;
+        border-bottom-right-radius: $border-radius;
+      }
+    }
+  }
+}

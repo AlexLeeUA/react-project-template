@@ -1,0 +1,48 @@
+@import './shared-variables.scss';
+
+.dd-container {
+  width: 200px;
+  position: relative;
+  .dd-header,
+  .dd-list-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 24px;
+    border: 1px solid $tertiary-gray-4;
+    padding: 12px 12px 12px 16px;
+    cursor: pointer;
+  }
+  .dd-header {
+    border-radius: $border-radius;
+    position: relative;
+    .dd-header-title {
+      height: 100%;
+    }
+    &.open {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      border-color: $primary-blue;
+    }
+  }
+  .dd-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    background: $primary-white;
+    .dd-list-item {
+      border-top: none;
+      &.selected {
+        color: $primary-blue;
+      }
+      &:last-child {
+        border-bottom-left-radius: $border-radius;
+        border-bottom-right-radius: $border-radius;
+      }
+    }
+  }
+}

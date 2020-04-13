@@ -1,8 +1,8 @@
 import React from 'react';
 
-const TextLink = ({ id, text, url, classnames, containerStyles }) => {
+const TextLink = ({ id, text, url, classnames }) => {
   return (
-    <div className="link" style={containerStyles}>
+    <div className="link-container">
       <a href={url} id={id} className={classnames}>
         {text}
       </a>

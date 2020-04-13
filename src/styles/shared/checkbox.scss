@@ -1,0 +1,51 @@
+@import './shared-variables.scss';
+
+.checkbox-container {
+  .checkbox {
+    height: 100%;
+    input[type='checkbox'] {
+      display: none;
+    }
+    label {
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      span {
+        margin: -1px 0 0 10px;
+      }
+    }
+    label::before {
+      content: '';
+      display: inline-block;
+      box-sizing: border-box;
+      border-radius: $border-radius;
+      vertical-align: bottom;
+      transition: all 150ms;
+      background: white;
+      border: 1px solid rgba(37, 44, 55, 0.1);
+      cursor: pointer;
+    }
+    input:checked + label:before {
+      border: none;
+      background: url('../../assets/icons/check.svg') no-repeat $primary-green;
+      background-position: 50% 50%;
+    }
+    &.large {
+      label::before {
+        width: 36px;
+        height: 36px;
+      }
+    }
+    &.small {
+      label::before {
+        width: 20px;
+        height: 20px;
+      }
+    }
+    &:hover {
+      label::before {
+        background: $tertiary-gray-4;
+      }
+    }
+  }
+}

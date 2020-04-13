@@ -3,8 +3,10 @@ import { action, observable } from 'mobx';
 class GlobalStore {
   @observable testString = '';
 
-  @action testAction = () => {
-    return null;
+  @action setFormValue = (formGroupKey, setSelectedValue, value) => {
+    if (formGroupKey) {
+      setSelectedValue(formGroupKey, value);
+    }
   };
 }
 
