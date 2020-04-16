@@ -1,13 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Button from '../../Button';
 import classnames from 'classnames';
 
-const Radio = ({ title, selected, onClick }) => {
+const Radio = ({ title, selected, rate, onClick }) => {
   return (
     <Button
       type="button"
       onClick={onClick}
-      title={title}
+      title={`${title} ${rate ? `(${rate})` : ''}`}
       classnames={classnames('btn', 'large', {
         primary: selected,
         green: selected,
@@ -18,3 +19,10 @@ const Radio = ({ title, selected, onClick }) => {
 };
 
 export default Radio;
+
+Radio.propTypes = {
+  title: PropTypes.string.isRequired,
+  rate: PropTypes.number,
+  onClick: PropTypes.func.isRequired,
+  selected: PropTypes.bool,
+};

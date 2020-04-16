@@ -1,11 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
 @import './shared-variables.scss';
 @import './main.scss';
-@import './shared/button.scss';
-@import './shared/textLink.scss';
-@import './shared/tab.scss';
-@import './shared/radioGroup.scss';
-@import './shared/checkbox.scss';
-@import './shared/select.scss';
-@import './shared/input.scss';
-@import './shared/icons.scss';
+@import './shared/index.scss';
+
+@import '../utils/devHelper/styles/dev-helper.scss';

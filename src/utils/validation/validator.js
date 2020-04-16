@@ -49,9 +49,10 @@ class Validator {
   };
 
   validatorAddress = (value) => {
-    return /^[a-z\s\d.,;:()""''&-\\#]+$/iu.test(value)
-      ? { isValid: true, error: '' }
-      : { isValid: false, error: errorsString.COMMON_ERRORS.FORB_CHAR };
+    if (!value) {
+      return { isValid: false, error: errorsString.COMMON_ERRORS.IS_REQ };
+    }
+    return { isValid: true, error: '' };
   };
 
   validatorNumber = (value) => {

@@ -1,21 +1,20 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import cx from 'classnames';
 import visibility_off from '../../assets/icons/visibility_off.svg';
 import visibility_on from '../../assets/icons/visibility.svg';
-import error from '../../assets/icons/error.svg';
-import globalStore from '../../stores/globalStore';
+import errorIcon from '../../assets/icons/error.svg';
 
 class Input extends Component {
   state = {
     type: null,
-    value: '',
     isPasswordShown: false,
   };
 
   componentDidMount() {
-    const { formGroupKey, setSelectedValue, value, type } = this.props;
-    globalStore.setFormValue(formGroupKey, setSelectedValue, value);
-    this.setState({ type, value });
+    const { type, formLabel, name, value, required, onValidate } = this.props;
+    required && onValidate && onValidate(formLabel, name, value);
+    this.setState({ type });
   }
 
   onTogglePassword = () => {
@@ -32,21 +31,19 @@ class Input extends Component {
     }
   };
 
-  onChange = (e) => {
-    const { formGroupKey, setSelectedValue } = this.props;
-    globalStore.setFormValue(formGroupKey, setSelectedValue, e.target.value);
-    this.setState({ value: e.target.value });
-  };
-
   render() {
     const {
       id,
+      name,
       type,
       placeholder,
       label,
+      value,
       classnames,
+      onChange,
       isDisabled,
-      errorMessage,
+      error,
+      showError,
     } = this.props;
 
     return (
@@ -54,12 +51,14 @@ class Input extends Component {
         <label htmlFor={id}>{label}</label>
         <input
           id={id}
+          name={name}
           type={this.state.type}
-          value={this.state.value}
+          value={value}
           className={cx(`${classnames}`, {
             password: type === 'password',
+            error: showError,
           })}
-          onChange={this.onChange}
+          onChange={onChange}
           disabled={isDisabled}
           placeholder={placeholder}
         />
@@ -80,10 +79,10 @@ class Input extends Component {
             />
           )
         ) : null}
-        {errorMessage && (
+        {showError && error && (
           <div className="error-message">
-            <img src={error} alt="error" />
-            <span>{errorMessage}</span>
+            <img src={errorIcon} alt="error" />
+            <span>{error}</span>
           </div>
         )}
       </div>
@@ -92,3 +91,17 @@ class Input extends Component {
 }
 
 export default Input;
+
+Input.propTypes = {
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  name: PropTypes.string,
+  type: PropTypes.string,
+  placeholder: PropTypes.string,
+  label: PropTypes.string,
+  value: PropTypes.string,
+  classnames: PropTypes.string,
+  onChange: PropTypes.func,
+  isDisabled: PropTypes.bool,
+  error: PropTypes.string,
+  showError: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+};

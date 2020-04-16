@@ -1,30 +1,33 @@
 import React, { Component } from 'react';
-import classnames from 'classnames';
+import PropTypes from 'prop-types';
+import cx from 'classnames';
 import arrow_up from '../../assets/icons/keyboard_arrow_up.svg';
 import arrow_down from '../../assets/icons/keyboard_arrow_down.svg';
 import check from '../../assets/icons/check.svg';
+import errorIcon from '../../assets/icons/error.svg';
 
 class Select extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      list: [],
       listOpen: false,
-      headerTitle: '',
     };
 
     this.ref = React.createRef();
   }
 
   componentDidMount() {
-    const headerTitle = this.selectedHeader(this.props.list);
-    this.setState({
-      headerTitle: headerTitle,
-      list: this.props.list,
-    });
-
+    const { name, required, onSelect, optionsKey, formLabel } = this.props;
+    const index = null;
+    onSelect(optionsKey, index, formLabel, name, required);
     document.addEventListener('click', this.handleClickOutside, true);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.value !== this.props.value) {
+      this.setState({ listOpen: false });
+    }
   }
 
   componentWillUnmount() {
@@ -41,39 +44,29 @@ class Select extends Component {
     this.setState({ listOpen: !this.state.listOpen });
   };
 
-  selectItem = (index) => {
-    const updatedList = this.state.list.map((option, i) => {
-      if (index === i) {
-        return {
-          ...option,
-          selected: !option.selected,
-        };
-      } else {
-        return {
-          ...option,
-          selected: false,
-        };
-      }
-    });
-    const headerTitle = this.selectedHeader(updatedList);
-    this.setState({ list: updatedList, headerTitle: headerTitle });
-  };
-
-  selectedHeader = (list) => {
-    const selectedItem = list.find((item) => item.selected);
-    const headerTitle = selectedItem
-      ? selectedItem.title
-      : this.props.placeholder;
-
-    return headerTitle;
-  };
-
   render() {
-    const { list, listOpen, headerTitle } = this.state;
+    const {
+      id,
+      label,
+      name,
+      value,
+      required,
+      placeholder,
+      options,
+      onSelect,
+      optionsKey,
+      formLabel,
+      error,
+      showError,
+    } = this.props;
+    const { listOpen } = this.state;
+    const headerTitle = value ? value.title : placeholder;
+
     return (
       <div className="dd-container" ref={this.ref}>
+        <label htmlFor={id}>{label}</label>
         <div
-          className={classnames('dd-header', { open: listOpen })}
+          className={cx('dd-header', { open: listOpen, error: showError })}
           onClick={() => this.toggleList()}
         >
           <div className="dd-header-title">{headerTitle}</div>
@@ -83,15 +76,23 @@ class Select extends Component {
             <img src={arrow_down} alt="arrow-down" />
           )}
         </div>
+        {showError && error && (
+          <div className="error-message">
+            <img src={errorIcon} alt="error" />
+            <span>{error}</span>
+          </div>
+        )}
         {listOpen && (
           <ul className="dd-list">
-            {list.map((item, index) => (
+            {options.map((item, index) => (
               <li
-                className={classnames('dd-list-item', {
+                className={cx('dd-list-item', {
                   selected: item.selected,
                 })}
                 key={item.title}
-                onClick={() => this.selectItem(index)}
+                onClick={() =>
+                  onSelect(optionsKey, index, formLabel, name, required)
+                }
               >
                 {item.title} {item.selected && <img src={check} alt="check" />}
               </li>
@@ -104,3 +105,19 @@ class Select extends Component {
 }
 
 export default Select;
+
+Select.propTypes = {
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  label: PropTypes.string,
+  name: PropTypes.string,
+  value: PropTypes.object,
+  required: PropTypes.bool,
+  placeholder: PropTypes.string,
+  isDisabled: PropTypes.bool,
+  options: PropTypes.array.isRequired,
+  optionsKey: PropTypes.string.isRequired,
+  formLabel: PropTypes.string,
+  onSelect: PropTypes.func.isRequired,
+  error: PropTypes.string,
+  showError: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+};

@@ -1,48 +1,32 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Radio from './components/Radio';
-import globalStore from '../../stores/globalStore';
 
 class RadioGroup extends Component {
-  state = {
-    options: [],
-  };
-
   componentDidMount() {
-    this.onSetFormValue(this.props.options);
-    this.setState({ options: this.props.options });
+    const { name, required, onSelect, optionsKey, formLabel } = this.props;
+    const index = null;
+    onSelect(optionsKey, index, formLabel, name, required);
   }
 
-  onChange = (index) => {
-    const updatedOptions = this.state.options.map((option, i) => {
-      if (index === i) {
-        return {
-          ...option,
-          selected: !option.selected,
-        };
-      } else {
-        return {
-          ...option,
-          selected: false,
-        };
-      }
-    });
-    this.onSetFormValue(updatedOptions);
-    this.setState({ options: updatedOptions });
-  };
-
-  onSetFormValue = (list) => {
-    const { formGroupKey, setSelectedValue } = this.props;
-    const selectedValue = list.find((option) => option.selected);
-    globalStore.setFormValue(formGroupKey, setSelectedValue, selectedValue);
-  };
-
   render() {
+    const {
+      name,
+      onSelect,
+      options,
+      optionsKey,
+      formLabel,
+      required,
+    } = this.props;
     return (
       <div className="radio-group">
-        {this.state.options.map((option, index) => (
+        {options.map((option, index) => (
           <Radio
-            onClick={() => this.onChange(index)}
+            onClick={() =>
+              onSelect(optionsKey, index, formLabel, name, required)
+            }
             title={option.title}
+            rate={option.rate}
             selected={option.selected}
             key={index}
           />
@@ -53,3 +37,12 @@ class RadioGroup extends Component {
 }
 
 export default RadioGroup;
+
+RadioGroup.propTypes = {
+  name: PropTypes.string,
+  onSelect: PropTypes.func.isRequired,
+  options: PropTypes.array.isRequired,
+  optionsKey: PropTypes.string.isRequired,
+  formLabel: PropTypes.string,
+  required: PropTypes.bool,
+};

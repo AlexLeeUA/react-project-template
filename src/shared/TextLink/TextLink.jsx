@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const TextLink = ({ id, text, url, classnames }) => {
   return (
@@ -11,3 +12,10 @@ const TextLink = ({ id, text, url, classnames }) => {
 };
 
 export default TextLink;
+
+TextLink.propTypes = {
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  text: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
+  classnames: PropTypes.string,
+};

@@ -1,34 +1,37 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { observer } from 'mobx-react';
 
+@observer
 class FormContainer extends Component {
-  state = {};
-
-  setSelectedValue = (key, value) => {
-    this.setState({ [key]: value });
-  };
-
-  onSubmit = () => {
-    console.log(this.state);
-  };
-
   render() {
     const childrenWithProps = React.Children.map(
       this.props.children,
       (child) => {
         if (child.props.type === 'submit') {
           return React.cloneElement(child, {
-            onClick: this.onSubmit,
+            onClick: () => this.props.onSubmit(this.props.form.label),
           });
         } else {
+          const formField = this.props.form.values[child.props.name];
           return React.cloneElement(child, {
-            setSelectedValue: this.setSelectedValue,
+            formLabel: this.props.form.label,
+            value: formField.value,
+            error: formField.error,
+            showError: formField.showError,
           });
         }
       },
     );
 
-    return <div>{childrenWithProps}</div>;
+    return <div className="form-container">{childrenWithProps}</div>;
   }
 }
 
 export default FormContainer;
+
+FormContainer.propTypes = {
+  children: PropTypes.node.isRequired,
+  form: PropTypes.object.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+};

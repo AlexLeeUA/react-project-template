@@ -8,5 +8,6 @@ export default {
   state: 'validatorAddress',
   city: 'validatorAddress',
   address: 'validatorAddress',
-  person_zipCode: 'validatorZIP',
+  zipCode: 'validatorZIP',
+  language: 'validatorAddress', //temp
 };

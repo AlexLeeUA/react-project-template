@@ -1,41 +1,30 @@
-import React, { Component } from 'react';
-import globalStore from '../../stores/globalStore';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-class Checkbox extends Component {
-  state = {
-    isChecked: false,
-  };
-
-  componentDidMount() {
-    const { formGroupKey, setSelectedValue, isChecked } = this.props;
-    globalStore.setFormValue(formGroupKey, setSelectedValue, isChecked);
-    this.setState({ isChecked: this.props.isChecked });
-  }
-
-  onChange = (e) => {
-    const { formGroupKey, setSelectedValue } = this.props;
-    globalStore.setFormValue(formGroupKey, setSelectedValue, e.target.checked);
-    this.setState({ isChecked: !this.state.isChecked });
-  };
-
-  render() {
-    const { id, label, classnames } = this.props;
-    return (
-      <div className="checkbox-container">
-        <div className={classnames}>
-          <input
-            id={id}
-            type="checkbox"
-            checked={this.state.isChecked}
-            onChange={this.onChange}
-          />
-          <label htmlFor={id}>
-            <span>{label}</span>
-          </label>
-        </div>
+const Checkbox = ({ id, label, classnames, isChecked, onChange }) => {
+  return (
+    <div className="checkbox-container">
+      <div className={classnames}>
+        <input
+          id={id}
+          type="checkbox"
+          checked={isChecked}
+          onChange={onChange}
+        />
+        <label htmlFor={id}>
+          <span>{label}</span>
+        </label>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default Checkbox;
+
+Checkbox.propTypes = {
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  label: PropTypes.string,
+  classnames: PropTypes.string,
+  isChecked: PropTypes.bool.isRequired,
+  onChange: PropTypes.func,
+};

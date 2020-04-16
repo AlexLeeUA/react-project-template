@@ -1,0 +1,28 @@
+.lib {
+  .title {
+    margin: 20px 0;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .buttons,
+  .tabs,
+  .checkboxes {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .buttons {
+    .btn-container {
+      width: 200px;
+    }
+  }
+  .tabs {
+    .tab-container {
+      width: 250px;
+    }
+  }
+  .checkboxes {
+    width: 200px;
+  }
+}

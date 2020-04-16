@@ -19,7 +19,7 @@ export default {
   },
   COMMON_ERRORS: {
     IS_REQ: 'You must fill this field',
-    FORB_CHAR: 'This feild has forbidden characters',
+    FORB_CHAR: 'This field has forbidden characters',
     LESS_2_CHAR: 'This field should have at least 2 characters',
   },
 };

@@ -1,6 +1,7 @@
 @import './shared-variables.scss';
 
 .checkbox-container {
+  width: auto;
   .checkbox {
     height: 100%;
     input[type='checkbox'] {
