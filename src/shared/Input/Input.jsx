@@ -100,6 +100,8 @@ Input.propTypes = {
   onChange: PropTypes.func,
   onValidate: PropTypes.func,
   isDisabled: PropTypes.bool,
+  formLabel: PropTypes.string,
   error: PropTypes.string,
+  required: PropTypes.bool,
   showError: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
 };

@@ -16,6 +16,20 @@ touch .env
 
 cp .env.example .env
 
+## Use helpful libraries
+
+'classnames' to manage with dynamic multiple classes.
+
+'lodash' for optimizing data manipulation.
+
+## Use project shared components library
+
+Open (https://docs.google.com/spreadsheets/d/1MFz5GG5ai3rHp_8eiMFZxyg6hhU9nCueRhCRIHibe34/edit#gid=0)
+to see the list of shared components.
+
+Also you can apply 'src/utils/devHelper/SharedItemsLib.jsx' to do testing manipulations with
+shared components.
+
 ## Available Scripts
 
 In the project directory, you can run:

@@ -22,7 +22,7 @@ const Checkbox = ({ id, label, classnames, isChecked, onChange }) => {
 export default Checkbox;
 
 Checkbox.propTypes = {
-  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   label: PropTypes.string,
   classnames: PropTypes.string,
   isChecked: PropTypes.bool.isRequired,
