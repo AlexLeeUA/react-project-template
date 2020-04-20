@@ -166,7 +166,7 @@ class SharedItemsLib extends Component {
               required={true}
               onValidate={devHelperStore.validateField}
               onChange={(e) =>
-                devHelperStore.onChange(e, devHelperStore.loginForm.label)
+                devHelperStore.onChange(e, devHelperStore.loginForm.label, true)
               }
             />
             <Input
@@ -177,7 +177,7 @@ class SharedItemsLib extends Component {
               required={true}
               onValidate={devHelperStore.validateField}
               onChange={(e) =>
-                devHelperStore.onChange(e, devHelperStore.loginForm.label)
+                devHelperStore.onChange(e, devHelperStore.loginForm.label, true)
               }
             />
             <Button

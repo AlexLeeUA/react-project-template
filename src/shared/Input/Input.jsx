@@ -24,11 +24,8 @@ class Input extends Component {
   };
 
   onChangeType = () => {
-    if (this.state.isPasswordShown) {
-      this.setState({ type: 'text' });
-    } else {
-      this.setState({ type: 'password' });
-    }
+    const type = this.state.isPasswordShown ? 'text' : 'password';
+    this.setState({ type });
   };
 
   render() {
@@ -101,6 +98,7 @@ Input.propTypes = {
   value: PropTypes.string,
   classnames: PropTypes.string,
   onChange: PropTypes.func,
+  onValidate: PropTypes.func,
   isDisabled: PropTypes.bool,
   error: PropTypes.string,
   showError: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),

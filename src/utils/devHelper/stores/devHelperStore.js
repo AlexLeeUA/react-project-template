@@ -70,25 +70,17 @@ class DevHelperStore {
       if (!index && index !== 0) {
         return { ...option };
       } else if (index === i) {
-        return {
-          ...option,
-          selected: !option.selected,
-        };
+        return { ...option, selected: !option.selected };
       } else {
-        return {
-          ...option,
-          selected: false,
-        };
+        return { ...option, selected: false };
       }
     });
     const value = this[optionsKey].find((option) => option.selected);
+    formLabel && this.onSelectFormItem(formLabel, name, value, required);
     //Additional options for select action
     if (optionsKey === 'languageOptions') {
       const { locale } = value;
       i18nStore.changeLanguage(locale);
-    }
-    if (formLabel) {
-      this.onSelectFormItem(formLabel, name, value, required);
     }
   };
 
